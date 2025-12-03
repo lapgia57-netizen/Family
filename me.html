@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Đức Giang & Vợ • Mãi Mãi Bên Nhau</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                   url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 2rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 5rem;
+      margin-bottom: 0.5rem;
+      color: #ff9999;
+      line-height: 1.2;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin: 1rem 0;
+    }
+    .wedding-date {
+      font-size: 1.4rem;
+      margin: 1rem 0;
+      color: #ffcccc;
+    }
+    .counter {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      min-width: 300px;
+    }
+    #years {
+      font-family: 'Dancing Script', cursive;
+      font-size: 6rem;
+      color: #ffb3b3;
+      text-shadow: 0 0 20px rgba(255,182,193,0.8);
+    }
+    .heart {
+      color: #ff6b6b;
+      animation: pulse 2s infinite;
+    }
+    .message {
+      max-width: 800px;
+      padding: 2rem;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      font-style: italic;
+      margin: 2rem auto;
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 1rem;
+      font-size: 1rem;
+      opacity: 0.9;
+      font-weight: 500;
+    }
+    .loading {
+      font-size: 1.2rem;
+      color: #ffcccc;
+    }
+    .fallback {
+      background: rgba(255,100,100,0.2);
+      padding: 15px;
+      border-radius: 10px;
+      margin: 20px;
+      font-size: 0.9rem;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 3.5rem; }
+      #years { font-size: 4.5rem; }
+      h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1 id="coupleName">Đức Giang <span class="heart">♥</span> </h1>
+    <h2 id="weddingTitle">Ngày Kết Hôn</h2>
+    <p class="wedding-date" id="weddingDateDisplay">Đang tải từ Firebase...</p>
+  </header>
+
+  <div class="counter">
+    <p>Chúng ta đã bên nhau</p>
+    <div id="years" class="loading">...</div>
+    <p>năm hạnh phúc <span class="heart">♥</span></p>
+  </div>
+
+  <div class="message">
+    <p>
+      "Tình yêu của chúng ta bắt đầu từ ngày đặc biệt ấy.<br>
+      Dù bao năm trôi qua, anh vẫn mãi bên em, mãi mãi là của nhau."
+    </p>
+    <br>
+    <p>— Với tất cả yêu thương, Đức Giang &amp; Vợ —</p>
+  </div>
+
+  <footer id="footerText">
+    © <span id="yearRange">2025</span> • Đức Giang • Mãi mãi bên nhau
+  </footer>
+
+  <script>
+    // Firebase Realtime Database
+    const DB_URL = "https://bigdata-c9bd2-default-rtdb.firebaseio.com/weddingInfo.json";
+
+    let weddingDate = null;
+    let wifeName = "";
+
+    const coupleNameEl = document.getElementById('coupleName');
+    const yearsEl = document.getElementById('years');
+    const weddingTitleEl = document.getElementById('weddingTitle');
+    const weddingDateDisplay = document.getElementById('weddingDateDisplay');
+    const footerYearRange = document.getElementById('yearRange');
+
+    async function loadWeddingInfo() {
+      try {
+        const res = await fetch(DB_URL + '?t=' + Date.now()); // tránh cache
+        const data = await res.json();
+
+        if (data && data.wifeName && data.weddingDate) {
+          wifeName = data.wifeName.trim();
+          weddingDate = new Date(data.weddingDate);
+
+          // Cập nhật tên cặp đôi
+          coupleNameEl.innerHTML = `Đức Giang <span class="heart">♥</span> ${wifeName}`;
+
+          // Cập nhật ngày cưới
+          const formatted = weddingDate.toLocaleDateString('vi-VN', {
+            day: 'numeric', month: 'long', year: 'numeric'
+          });
+          weddingDateDisplay.textContent = formatted;
+          weddingTitleEl.textContent = "Kết Hôn Ngày";
+
+          // Tính số năm
+          calculateYears();
+
+          // Cập nhật footer: năm cưới – năm hiện tại
+          const startYear = weddingDate.getFullYear();
+          const currentYear = new Date().getFullYear();
+          footerYearRange.textContent = startYear === currentYear 
+            ? currentYear 
+            : `${startYear} – ${currentYear}`;
+
+        } else {
+          showFallback();
+        }
+      } catch (err) {
+        console.error("Lỗi tải dữ liệu:", err);
+        showFallback();
+      }
+    }
+
+    function calculateYears() {
+      if (!weddingDate) return;
+
+      const now = new Date();
+      let years = now.getFullYear() - weddingDate.getFullYear();
+      const monthDiff = now.getMonth() - weddingDate.getMonth();
+      const dayDiff = now.getDate() - weddingDate.getDate();
+
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        years--;
+      }
+
+      // Hiệu ứng đếm số năm
+      let count = 0;
+      const timer = setInterval(() => {
+        yearsEl.textContent = count;
+        if (count >= years) {
+          clearInterval(timer);
+          yearsEl.textContent = years;
+        }
+        count++;
+      }, 180);
+    }
+
+    function showFallback() {
+      coupleNameEl.innerHTML = `Đức Giang <span class="heart">♥</span> ?`;
+      yearsEl.textContent = "Chưa có";
+      weddingDateDisplay.innerHTML = `
+        <div class="fallback">
+          Chưa cập nhật thông tin cưới<br>
+          <small>Vui lòng vào trang cập nhật để nhập tên vợ & ngày cưới</small>
+        </div>`;
+      weddingTitleEl.textContent = "Đang chờ dữ liệu...";
+      footerYearRange.textContent = new Date().getFullYear();
+    }
+
+    // Load lần đầu
+    loadWeddingInfo();
+
+    // Tự động cập nhật mỗi 60 giây
+    setInterval(loadWeddingInfo, 60000);
+  </script>
+</body>
+</html>
