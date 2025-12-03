@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jack & Rose • Mãi Mãi Bên Nhau</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?ixlib=rb-4.0.3&auto=format&fit=crop&q=80') center/cover no-repeat fixed;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow-x: hidden;
+    }
+    header {
+      padding: 2rem;
+      background: rgba(0,0,0,0.4);
+      border-radius: 15px;
+      margin-bottom: 2rem;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 5rem;
+      margin-bottom: 0.5rem;
+      color: #ff9999;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin: 1rem 0;
+    }
+    .wedding-date {
+      font-size: 1.4rem;
+      margin: 1rem 0;
+      color: #ffcccc;
+    }
+    .counter {
+      margin: 3rem 0;
+      padding: 2rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      min-width: 300px;
+    }
+    #years {
+      font-family: 'Dancing Script', cursive;
+      font-size: 6rem;
+      color: #ffb3b3;
+      text-shadow: 0 0 20px rgba(255,182,193,0.8);
+    }
+    .heart {
+      color: #ff6b6b;
+      animation: pulse 2s infinite;
+    }
+    .message {
+      max-width: 800px;
+      padding: 2rem;
+      font-size: 1.3rem;
+      line-height: 1.8;
+      font-style: italic;
+      margin: 2rem auto;
+    }
+    footer {
+      margin-top: 4rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+    @media (max-width: 768px) {
+      h1 { font-size: 3.5rem; }
+      #years { font-size: 4.5rem; }
+      h2 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Jack <span class="heart">&hearts;</span> Rose</h1>
+    <h2>Kết Hôn Ngày 14 Tháng 2 Năm 2014</h2>
+    <p class="wedding-date">Valentine's Day • Ngày Lễ Tình Nhân</p>
+  </header>
+
+  <div class="counter">
+    <p>Chúng mình đã bên nhau</p>
+    <div id="years">0</div>
+    <p>năm hạnh phúc <span class="heart">&hearts;</span></p>
+  </div>
+
+  <div class="message">
+    <p>
+      "Từ ngày 14/02/2014, anh và em đã cùng nhau viết nên câu chuyện tình yêu đẹp nhất đời này.<br>
+      Dù bao năm trôi qua, tình yêu của chúng ta vẫn mãi nồng nàn như ngày đầu."
+    </p>
+    <br>
+    <p>— Với tất cả yêu thương, Jack & Rose —</p>
+  </div>
+
+  <footer>
+    &copy; 2014 – <span id="currentYear"></span> • Jack & Rose • Mãi mãi là của nhau
+  </footer>
+
+  <script>
+    // Ngày cưới: 14/02/2014
+    const weddingDate = new Date('2014-02-14T00:00:00');
+
+    function updateYears() {
+      const now = new Date();
+      let years = now.getFullYear() - weddingDate.getFullYear();
+      const monthDiff = now.getMonth() - weddingDate.getMonth();
+      const dayDiff = now.getDate() - weddingDate.getDate();
+
+      // Nếu chưa đến ngày kỷ niệm năm nay → vẫn tính năm cũ
+      if (monthDiff < 0 || (monthDiff === 0 && dayDiff < 0)) {
+        years--;
+      }
+
+      // Hiệu ứng số nhảy dần (từ 0 đến số năm hiện tại)
+      const yearsElement = document.getElementById('years');
+      let current = 0;
+      const timer = setInterval(() => {
+        current++;
+        yearsElement.textContent = current;
+        if (current >= years) {
+          clearInterval(timer);
+          yearsElement.textContent = years;
+        }
+      }, 150);
+
+      // Cập nhật năm hiện tại ở footer
+      document.getElementById('currentYear').textContent = now.getFullYear();
+    }
+
+    // Chạy ngay khi load trang
+    updateYears();
+
+    // Cập nhật lại mỗi phút (để chính xác vào đúng ngày kỷ niệm)
+    setInterval(updateYears, 60000);
+  </script>
+</body>
+</html>
