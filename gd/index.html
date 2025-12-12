@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nền Tảng Gia Đình - Xây dựng hạnh phúc bền vững</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <style>
+        :root {
+            --primary: #d35400;
+            --secondary: #e67e22;
+            --light: #fdf2e8;
+        }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; }
+        .hero {
+            background: linear-gradient(rgba(211,84,0,0.85), rgba(230,126,34,0.9)), 
+                        url('https://images.unsplash.com/photo-1511895233-1f0e1e8dc9df?auto=format&fit=crop&w=1350') center/cover no-repeat;
+            color: white;
+            padding: 160px 0 120px;
+        }
+        .feature-icon { font-size: 3.5rem; color: var(--primary); }
+        .card-hover:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(211,84,0,0.25);
+            transition: all 0.4s ease;
+        }
+        footer { background: #2c3e50; color: #ecf0f1; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="#">
+            <i class="bi bi-heart-fill text-danger"></i> Nền Tảng Gia Đình
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="#">Trang chủ</a></li>
+                <li class="nav-item"><a class="nav-link" href="#gioithieu">Giới thiệu</a></li>
+                <li class="nav-item"><a class="nav-link" href="#giatri">Giá trị</a></li>
+                <li class="nav-item"><a class="nav-link" href="#hoatdong">Hoạt động</a></li>
+                <li class="nav-item"><a class="nav-link" href="#lienhe">Liên hệ</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero -->
+<section class="hero text-center">
+    <div class="container">
+        <h1 class="display-4 fw-bold mb-4">Xây Dựng Gia Đình Hạnh Phúc</h1>
+        <p class="lead mb-5">Nơi nuôi dưỡng tình yêu thương, sự thấu hiểu và trách nhiệm</p>
+        <a href="#gioithieu" class="btn btn-light btn-lg px-5 shadow">Tìm hiểu thêm</a>
+    </div>
+</section>
+
+<!-- Giới thiệu -->
+<section id="gioithieu" class="py-5 bg-white">
+    <div class="container">
+        <div class="row align-items-center flex-column-reverse flex-lg-row">
+            <div class="col-lg-6 mb-4 mb-lg-0">
+                <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e6?auto=format&fit=crop&w=800" class="img-fluid rounded shadow" alt="Gia đình">
+            </div>
+            <div class="col-lg-6">
+                <h2 class="fw-bold mb-4" style="color: var(--primary);">Nền Tảng Gia Đình Là Gì?</h2>
+                <p class="text-muted lead">Nền tảng gia đình là những giá trị cốt lõi giúp hôn nhân và gia đình trở nên vững chắc: tình yêu thương, sự tôn trọng, trách nhiệm, trung thành và đức tin.</p>
+                <ul class="list-unstyled mt-4">
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Hơn 10 năm kinh nghiệm tư vấn hôn nhân gia đình</li>
+                    <li class="mb-2"><i class="bi bi-check-circle-fill text-success me-2"></i> Hơn 5.000 cặp đôi đã tham gia</li>
+                    <li><i class="bi bi-check-circle-fill text-success me-2"></i> Đội ngũ chuyên gia tâm lý & mục tử tận tâm</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Giá trị cốt lõi -->
+<section id="giatri" class="py-5" style="background: var(--light);">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5" style="color: var(--primary);">4 Giá Trị Cốt Lõi</h2>
+        <div class="row text-center g-4">
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body">
+                        <i class="bi bi-heart-fill feature-icon mb-3"></i>
+                        <h5>Tình Yêu Thương</h5>
+                        <p class="text-muted">Yêu thương vô điều kiện là nền tảng của mọi mối quan hệ.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body">
+                        <i class="bi bi-people-fill feature-icon mb-3"></i>
+                        <h5>Thấu Hiểu & Tôn Trọng</h5>
+                        <p class="text-muted">Lắng nghe và trân trọng sự khác biệt của nhau.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body">
+                        <i class="bi bi-shield-check feature-icon mb-3"></i>
+                        <h5>Trách Nhiệm & Trung Thành</h5>
+                        <p class="text-muted">Giữ lời hứa và cùng nhau vượt qua khó khăn.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card h-100 border-0 shadow card-hover">
+                    <div class="card-body">
+                        <i class="bi bi-lightbulb-fill feature-icon mb-3"></i>
+                        <h5>Đức Tin & Hy Vọng</h5>
+                        <p class="text-muted">Niềm tin vào Chúa và vào nhau là nguồn sức mạnh lớn nhất.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hoạt động -->
+<section id="hoatdong" class="py-5 bg-white">
+    <div class="container">
+        <h2 class="text-center fw-bold mb-5" style="color: var(--primary);">Các Hoạt Động Nổi Bật</h2>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card border-0 shadow">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2b12e8?auto=format&fit=crop&w=600" class="card-img-top" alt="Khóa học">
+                    <div class="card-body">
+                        <h5>Khóa Học Tiền Hôn Nhân</h5>
+                        <p>8 buổi học chuẩn bị tốt nhất cho đời sống hôn nhân.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow">
+                    <img src="https://images.unsplash.com/photo-1511632765794-f9e9d23b8e84?auto=format&fit=crop&w=600" class="card-img-top" alt="Tư vấn">
+                    <div class="card-body">
+                        <h5>Tư Vấn Hôn Nhân Gia Đình</h5>
+                        <p>Hỗ trợ 1-1 với chuyên gia tâm lý & mục tử.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0 shadow">
+                    <img src="https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&w=600" class="card-img-top" alt="Retreat">
+                    <div class="card-body">
+                        <h5>Hội Thảo & Retreat Gia Đình</h5>
+                        <p>Chương trình cuối tuần tái kết nối tình yêu.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Liên hệ -->
+<section id="lienhe" class="py-5 text-white" style="background: var(--primary);">
+    <div class="container text-center">
+        <h2 class="mb-4">Bạn Sẵn Sàng Xây Dựng Gia Đình Hạnh Phúc?</h2>
+        <p class="lead mb-4">Hãy liên hệ ngay hôm nay!</p>
+        <a href="mailto:info@nentanggiadinh.vn" class="btn btn-light btn-lg me-3">Gửi Email</a>
+        <a href="tel:+84909123456" class="btn btn-outline-light btn-lg">0909.123.456</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-5">
+    <div class="container text-center">
+        <p>© 2025 Nền Tảng Gia Đình. Tất cả quyền được bảo lưu.</p>
+        <p>Địa chỉ: 123 Đường Hạnh Phúc, Q. Tân Bình, TP.HCM | Email: info@nentanggiadinh.vn</p>
+    </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
